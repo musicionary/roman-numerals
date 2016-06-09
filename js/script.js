@@ -6,8 +6,10 @@ Back End
 var romanString;
 var romanArray = [];
 
-
 function convert(number) {
+  if (number >= 4000) {
+    return romanString = "Dem Romans was lazy. You can't write more than 3999 for some reason.";
+  }
   if (number >= 1000) {
     return romanArray.push("M") + convert(number-1000);
   }
