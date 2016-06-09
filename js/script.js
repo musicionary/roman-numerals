@@ -2,52 +2,69 @@
 Back End
 =============================*/
 //spec: assign letters to user input numbers based on each unique roman numeral
-var one = "I";
-var five = "V";
-var ten = "X";
-var fifty = "L";
-var hundred = "C";
-var fiveHundred = "D";
-var thousand = "M";
-var numberArray = [];
+// var one = "I";
+// var five = "V";
+// var ten = "X";
+// var fifty = "L";
+// var hundred = "C";
+// var fiveHundred = "D";
+// var thousand = "M";
+// var numberArray = [];
+var romanString;
 var romanArray = [];
 
-function numberSplit(input) {
-  numberArray = [];
-  numberArray.push(input);
-  console.log(numberArray);
-}
+// function numberSplit(input) {
+//   numberArray = [];
+//   numberArray.push(input);
+//   console.log(numberArray);
+// }
 
-function converter(numbers) {
+function convert(number) {
+  if (number >= 1000) {
+    return romanArray.push("M") + convert(number-1000);
+  }
+  if (number >= 900) {
+    return romanArray.push("CM") + convert(number-900);
+  }
+  if (number >= 500) {
+    return romanArray.push("D") + convert(number-500);
+  }
+  if (number >= 400) {
+    return romanArray.push("CD") + convert(number-400);
+  }
+  if (number >= 100) {
+    return romanArray.push("C") + convert(number-100);
+  }
+  if (number >= 90) {
+    return romanArray.push("XC") + convert(number-90);
+  }
+  if (number >= 50) {
+    return romanArray.push("L") + convert(number-50);
+  }
+  if (number >= 40) {
+    return romanArray.push("XL") + convert(number-40);
+  }
+  if (number >= 10) {
+    return romanArray.push("X") + convert(number-10);
+  }
+  if (number >= 9) {
+    return romanArray.push("IX") + convert(number-9);
+  }
+  if (number >= 5) {
+    return romanArray.push("V") + convert(number-5);
+  }
+  if (number >= 4) {
+    return romanArray.push("IV") + convert(number-4);
+  }
+  if (number >= 1) {
+    return romanArray.push("I") + convert(number-1);
+  }
+
+  // return romanArray;
+  romanString = romanArray.join("");
   romanArray = [];
-  numbers.forEach(function(number){
-    switch (number) {
-      case 1:
-        romanArray.push(one);
-        break;
-      case 5:
-        romanArray.push(five);
-        break;
-      case 10:
-        romanArray.push(ten);
-        break;
-      case 50:
-        romanArray.push(fifty);
-        break;
-      case 100:
-        romanArray.push(hundred);
-        break;
-      case 500:
-        romanArray.push(fiveHundred);
-        break;
-      case 1000:
-        romanArray.push(thousand);
-        break;
-    }
-  });
-  console.log(romanArray);
+  console.log(romanString);
 }
-
 
 
 
@@ -58,20 +75,14 @@ function converter(numbers) {
 Front End
 =============================*/
 
-
-
-
-
-
-
 $(document).ready(function(){
   $("#converter").submit(function(event) {
     event.preventDefault();
 
     var numberInput = parseInt($("#number").val());
 
-    numberSplit(numberInput);
-    converter(numberArray);
-    // console.log("Hi there.");
+    convert(numberInput);
+    $("#output").text(romanString);
+    $(".result").show();
   });
 });
