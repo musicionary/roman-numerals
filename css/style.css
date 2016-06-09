@@ -1,0 +1,9 @@
+.result {
+  display: none;
+}
+
+#output {
+  font-size: 4.5em;
+  font-weight: bold;
+  color: green;
+}
