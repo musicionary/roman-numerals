@@ -1,15 +1,16 @@
 /*===========================
 Back End
 =============================*/
-//spec: assign letters to user input numbers based on each unique roman numeral
 
 var romanString;
 var romanArray = [];
 
 function convert(number) {
+  //spec: handle number greater than 3999
   if (number >= 4000) {
     return romanString = "Dem Romans was lazy. You can't write more than 3999 for some reason.";
   }
+  //spec: assign letters to user input numbers based on each unique roman numeral
   if (number >= 1000) {
     return romanArray.push("M") + convert(number-1000);
   }
@@ -50,7 +51,6 @@ function convert(number) {
     return romanArray.push("I") + convert(number-1);
   }
 
-  // return romanArray;
   romanString = romanArray.join("");
   romanArray = [];
   console.log(romanString);
